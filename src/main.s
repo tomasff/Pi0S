@@ -25,6 +25,23 @@ mov r1,#1
 lsl r1,#21
 str r1,[r0, #16]
 
+/*
+ * The LED turns on when the pin is cleared
+ *
+ * Clean pin 47.
+ *
+ * From the specification(p.90, Section 6.1) write to 0x2020002C
+ * to clear a pin.
+ *
+ * Addittionaly, bits 21 to 0 in this address
+ * represent pins 53 to 32 respectively.
+ * 
+ * Pin 47 is bit 15.
+ */
+mov r1,#1
+lsl r1,#15
+str r1,[r0, #44]
+
 loop$:
 b loop$
 
